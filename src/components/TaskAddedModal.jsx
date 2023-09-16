@@ -9,7 +9,6 @@ const TaskAddedModal = ({ showModal, onClose }) => {
 				<div className="modal-container bg-white w-96 mx-auto rounded shadow-lg z-50">
 					<div className="modal-content p-4 text-center">
 						<div className='flex justify-center'>
-
 							<img src={check} alt="check" className='w-[30%]' />
 						</div>
 						<h2 className="text-2xl font-semibold mb-4">Task Added Successfully</h2>

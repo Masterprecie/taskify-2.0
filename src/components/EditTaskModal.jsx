@@ -9,9 +9,9 @@ const EditTaskModal = ({ showModal, onClose, task, onSave }) => {
 
 	// Set the initial values when the task prop changes
 	useEffect(() => {
-		setEditedTitle(task.title || ''); // Use an empty string as a fallback
-		setEditedDescription(task.description || ''); // Use an empty string as a fallback
-		setEditedDueDate(task.dueDate || ''); // Use an empty string as a fallback
+		setEditedTitle(task.title || '');
+		setEditedDescription(task.description || '');
+		setEditedDueDate(task.dueDate || '');
 	}, [task]);
 
 	const handleSave = () => {
@@ -52,15 +52,15 @@ const EditTaskModal = ({ showModal, onClose, task, onSave }) => {
 };
 
 EditTaskModal.propTypes = {
-	showModal: PropTypes.bool.isRequired, // Example prop validation for a boolean prop
-	onClose: PropTypes.func.isRequired, // Example prop validation for a function prop
+	showModal: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
 	task: PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		title: PropTypes.string,
 		description: PropTypes.string,
 		dueDate: PropTypes.string,
-	}).isRequired, // Example prop validation for an object prop
-	onSave: PropTypes.func.isRequired, // Example prop validation for a function prop
+	}).isRequired,
+	onSave: PropTypes.func.isRequired,
 };
 
 export default EditTaskModal;

@@ -7,7 +7,6 @@ import { TaskProvider } from './context/TaskContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <TaskProvider>
-
       <App />
     </TaskProvider>
   </React.StrictMode>,
