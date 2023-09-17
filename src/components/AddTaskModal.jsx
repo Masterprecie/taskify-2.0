@@ -6,8 +6,10 @@ const AddTaskModal = ({ showModal, onClose, onAddTask }) => {
 	const [newTaskDescription, setNewTaskDescription] = useState('');
 	const [dueDate, setDueDate] = useState('');
 	const [showSubmitError, setShowSubmitError] = useState(false);
+	const [hasSubmitted, setHasSubmitted] = useState(false);
 
 	const handleAddTask = () => {
+		setHasSubmitted(true);
 		if (newTask.trim() === '' || newTaskDescription.trim() === '' || dueDate.trim() === '') {
 			setShowSubmitError(true);
 			return;
@@ -20,7 +22,6 @@ const AddTaskModal = ({ showModal, onClose, onAddTask }) => {
 		setShowSubmitError(false);
 		onClose();
 	};
-
 	return (
 		showModal && (
 			<div className="fixed inset-0 flex items-center justify-center z-50 text-center px-6">
@@ -34,22 +35,31 @@ const AddTaskModal = ({ showModal, onClose, onAddTask }) => {
 							value={newTask}
 							onChange={(e) => setNewTask(e.target.value)}
 							className="w-full border rounded p-2 mb-2"
+							required
 						/>
+						{showSubmitError && !newTask.trim() && hasSubmitted && (
+							<p className="text-red-600 mb-2">Please fill in the title field before adding.</p>
+						)}
 						<textarea
 							placeholder="Task description"
 							value={newTaskDescription}
 							onChange={(e) => setNewTaskDescription(e.target.value)}
 							className="w-full border rounded p-2 mb-2"
+							required
 						/>
+						{showSubmitError && !newTaskDescription.trim() && hasSubmitted && (
+							<p className="text-red-600 mb-2">Please fill in the description field before adding.</p>
+						)}
 						<input
-							type="date"
+							type="datetime-local"
 							placeholder="Due date"
 							value={dueDate}
 							onChange={(e) => setDueDate(e.target.value)}
 							className="w-full border rounded p-2 mb-4"
+							required
 						/>
-						{showSubmitError && (
-							<p className="text-red-600 mb-2">Please fill in both title and description fields.</p>
+						{showSubmitError && !dueDate.trim() && hasSubmitted && (
+							<p className="text-red-600 mb-2">Please fill in the due date field before adding.</p>
 						)}
 						<div className='flex justify-center gap-4'>
 							<div>

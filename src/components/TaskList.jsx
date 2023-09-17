@@ -16,7 +16,11 @@ const TaskList = () => {
 	const handleEditTask = (task) => {
 		setEditingTask(task);
 	};
-
+	function formatDueDate(dueDate) {
+		const date = new Date(dueDate);
+		const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+		return date.toLocaleDateString(undefined, options);
+	}
 	const handleSaveTask = (taskId, editedTitle, editedDescription, editedDueDate) => {
 		dispatch({
 			type: 'EDIT_TASK',
@@ -75,7 +79,7 @@ const TaskList = () => {
 							<div>
 								<h3 className="text-xl font-semibold">{task.title}</h3>
 								<p className="text-gray-700 md:overflow-auto overflow-scroll">{task.description}</p>
-								<p className="text-gray-500">Due Date: {task.dueDate}</p>
+								<p className="text-gray-500">Due Date: {formatDueDate(task.dueDate)}</p>
 							</div>
 							<button className="bg-green-500 text-white rounded px-2 py-1 mr-2 hover:bg-green-600" onClick={() => handleEditTask(task)}>Edit</button>
 							<button className="bg-red-500 text-white rounded px-2 py-1 hover:bg-red-600" onClick={() => handleDeleteTask(task.id)}>Delete</button>
